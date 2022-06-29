@@ -36,7 +36,7 @@ class AppConfig {
   static Future<AppVersionModel> loadVersionFromCloud() async {
     final response = await api.read(
       Uri.parse(
-          "https://github.com/Delimond-eng/cloud-update/app_versions_check/version.json"),
+          "https://github.com/Delimond-eng/cloud-update/blob/master/app_versions_check/version.json"),
     );
     print(response);
     return jsonDecode(response);
