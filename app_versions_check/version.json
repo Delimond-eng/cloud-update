@@ -1,0 +1,10 @@
+{
+    "name":"Cloud update Flutter DeskTop app",
+    "version": 1.0,
+    "description":[
+      "Added new screen",
+      "Minor bug Fixes"
+    ],
+    "macos_file_name":"installers/macos/cloud_app.dmg",
+    "windows_file_name":"installers/windows/cloud_app.exe"
+}
