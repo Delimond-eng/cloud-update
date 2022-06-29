@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Cloud update',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
@@ -32,6 +33,9 @@ class _HomePageState extends State<HomePage> {
   Future<void> checkForUpdates() async {
     final appInfo = await AppConfig.loadVersionFromCloud();
     print(appInfo.version);
+    if (appInfo.version > AppConfig.currentVersion) {
+      await AppConfig.downloadLastAppVersion(appInfo.windowsFileName);
+    }
   }
 
   @override
