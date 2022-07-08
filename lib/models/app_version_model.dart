@@ -1,6 +1,6 @@
 class AppVersionModel {
   String name;
-  int version;
+  double version;
   List<String> description;
   String macosFileName;
   String windowsFileName;

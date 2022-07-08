@@ -10,12 +10,13 @@ class AppConfig {
   static double currentVersion = 1.0;
 
   static Future downloadLastAppVersion(String appPath) async {
+    print("downloading...");
     final fileName = appPath.split("/").last;
     String downloadFilePath =
         "${(await getApplicationDocumentsDirectory()).path}/$fileName";
     final dio = Dio();
     await dio.download(
-      "https://github.com/Delimond-eng/cloud-update/app_versions_check/$appPath",
+      "http://z-database.rtgroup-rdc.com/app_versions_check/$appPath",
       downloadFilePath,
       onReceiveProgress: (count, total) => () {
         final progress = (count / total) * 100;
@@ -34,11 +35,10 @@ class AppConfig {
   }
 
   static Future<AppVersionModel> loadVersionFromCloud() async {
-    final response = await api.read(
+    final response = await api.get(
       Uri.parse(
-          "https://github.com/Delimond-eng/cloud-update/blob/master/app_versions_check/version.json"),
+          "http://z-database.rtgroup-rdc.com/app_versions_check/version.json"),
     );
-    print(response);
-    return jsonDecode(response);
+    return AppVersionModel.fromJson(jsonDecode(response.body));
   }
 }

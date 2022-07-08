@@ -38,9 +38,10 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> checkForUpdates() async {
     final appInfo = await AppConfig.loadVersionFromCloud();
-    print(appInfo.version);
-    if (appInfo.version > AppConfig.currentVersion) {
+    if (AppConfig.currentVersion < appInfo.version) {
       await AppConfig.downloadLastAppVersion(appInfo.windowsFileName);
+    } else {
+      print("app is updated !");
     }
   }
 
@@ -55,7 +56,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'HELLO GAST',
+              "New version updated",
             ),
             Text(
               'update app by version',
